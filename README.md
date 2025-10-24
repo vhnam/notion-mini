@@ -1,13 +1,14 @@
 # Notion Mini
 
-A Laravel application with Livewire, Fortify authentication, and modern frontend tooling.
+A multi-tenant Laravel application with Livewire, Fortify authentication, and modern frontend tooling.
 
 ## Features
 
 - **Laravel 12** - Latest Laravel framework
+- **Multi-Tenant Architecture** - Path-based tenancy with Stancl Tenancy
 - **Livewire 3** - Full-stack framework for Laravel
 - **Livewire Flux** - Beautiful UI components
-- **Laravel Fortify** - Authentication scaffolding
+- **Laravel Fortify** - Authentication scaffolding with 2FA support
 - **PostgreSQL** - Database with Docker
 - **Laravel Sail** - Docker development environment
 - **pnpm** - Fast, disk space efficient package manager
@@ -89,7 +90,7 @@ This project uses Laravel Sail for Docker-based development. Make sure you have 
 - **Database**: localhost:5432 (PostgreSQL)
 - **Vite Dev Server**: http://localhost:5173
 
-### Package Management
+## Package Management
 
 This project uses pnpm for Node.js package management. All npm commands should be run through Sail:
 
