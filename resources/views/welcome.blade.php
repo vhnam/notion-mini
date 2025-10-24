@@ -12,7 +12,6 @@
 
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @livewireStyles
         @fluxAppearance
     </head>
     <body
@@ -28,6 +27,15 @@
                         >
                             Dashboard
                         </a>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button
+                                type="submit"
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                            >
+                                Log out
+                            </button>
+                        </form>
                     @else
                         <a
                             href="{{ route('login') }}"
@@ -823,7 +831,6 @@
             <div class="h-14.5 hidden lg:block"></div>
         @endif
 
-        @livewireScripts
         @fluxScripts
     </body>
 </html>
