@@ -1,0 +1,73 @@
+# Cursor Rules for Notion Mini
+
+## Tech Stack
+- Laravel 12
+- Livewire 3 with Livewire Flux UI components
+- Laravel Fortify for authentication
+- PostgreSQL database
+- Laravel Sail for Docker development
+- pnpm for package management
+- Vite for frontend tooling
+- Tailwind CSS for styling
+
+## Development Environment
+- Always use Laravel Sail commands via `./vendor/bin/sail`
+- Docker and Docker Compose are required for local development
+
+## Package Management
+
+### Node.js Packages (pnpm)
+- **ALWAYS use pnpm instead of npm or yarn**
+- Run pnpm commands through Sail: `./vendor/bin/sail pnpm`
+- Install packages: `./vendor/bin/sail pnpm add <package>`
+- Remove packages: `./vendor/bin/sail pnpm remove <package>`
+- Never suggest npm or yarn commands
+
+### PHP Packages (Composer)
+- **ALWAYS run Composer through Sail**
+- Install packages: `./vendor/bin/sail composer require <package>`
+- Remove packages: `./vendor/bin/sail composer remove <package>`
+- Update packages: `./vendor/bin/sail composer update`
+- Never run `composer` directly outside of Sail
+
+## PHP/Laravel Guidelines
+- Use Laravel 12 features and syntax
+- Run Artisan commands through Sail: `./vendor/bin/sail artisan`
+- All PHP commands must go through Sail container
+- Follow Laravel best practices and conventions
+- Use Laravel Fortify for authentication features
+
+## Livewire Guidelines
+- Use Livewire 3 syntax and features
+- Leverage Livewire Flux components when building UI
+- Follow Livewire naming conventions for components
+- Use wire:model for two-way data binding
+- Prefer Livewire components over traditional Blade + JavaScript
+
+## Frontend Guidelines
+- Use Vite for asset bundling (not webpack or mix)
+- Use Tailwind CSS utility classes for styling
+- Run dev server: `./vendor/bin/sail pnpm run dev`
+- Build for production: `./vendor/bin/sail pnpm run build`
+- Never write custom CSS unless absolutely necessary
+
+## Database
+- Use PostgreSQL syntax and features
+- Run migrations: `./vendor/bin/sail artisan migrate`
+- Use Laravel migrations for schema changes
+- Database is accessible at localhost:5432
+
+## Testing
+- Run tests with: `./vendor/bin/sail test`
+- Write tests using Laravel's testing features
+
+## Code Style
+- Follow PSR-12 coding standards for PHP
+- Use Laravel conventions for naming (controllers, models, etc.)
+- Keep components small and focused
+- Use type hints in PHP code
+
+## Docker/Sail Commands
+- Start: `./vendor/bin/sail up -d`
+- Stop: `./vendor/bin/sail down`
+- All development commands should run through Sail
