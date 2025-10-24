@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Models\Tenant;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -25,10 +26,39 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        // Create the user
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        // Create a tenant for the user
+        $this->createTenantForUser($user);
+
+        return $user;
+    }
+
+    /**
+     * Create a tenant for the newly registered user.
+     */
+    protected function createTenantForUser(User $user): void
+    {
+        // Generate a unique tenant ID based on user email
+        $tenantId = 'tenant-' . str_replace(['@', '.'], ['-', '-'], $user->email);
+        
+        // Create the tenant using the proper tenancy method
+        $tenant = Tenant::create([
+            'id' => $tenantId,
+            'data' => [
+                'user_id' => $user->id,
+                'user_name' => $user->name,
+                'user_email' => $user->email,
+                'created_at' => now()->toISOString(),
+            ],
+        ]);
+
+        // No domain creation - tenant will be identified by other means
+        // (e.g., path-based tenancy, request data, or manual tenant switching)
     }
 }
