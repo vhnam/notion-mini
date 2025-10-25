@@ -13,9 +13,32 @@ use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
 | Here you can register the tenant routes for your application.
 | These routes are loaded by the TenantRouteServiceProvider.
 |
-| Feel free to customize them however you want. Good luck!
+| Path-based tenancy routes for accessing tenant areas.
 |
 */
 
-// Tenant routes are now handled in web.php with path-based tenancy
-// This file is kept for future tenant-specific routes if needed
+Route::middleware(['web', 'auth'])->group(function () {
+    Route::get('/tenant/{tenant}', function ($tenant) {
+        // Initialize tenancy and redirect to dashboard
+        initializeTenancy($tenant);
+        return redirect()->route('tenant.dashboard', ['tenant' => $tenant]);
+    })->name('tenant.initialize');
+
+    Route::get('/tenant/{tenant}/dashboard', function ($tenant) {
+        // Initialize tenancy and show dashboard
+        initializeTenancy($tenant);
+        return view('tenant-dashboard', [
+            'tenant' => tenant(),
+            'tenantId' => tenant('id'),
+        ]);
+    })->name('tenant.dashboard');
+});
+
+/**
+ * Initialize tenancy for the given tenant ID
+ */
+function initializeTenancy(string $tenantId): void
+{
+    $tenant = \App\Models\Tenant::findOrFail($tenantId);
+    tenancy()->initialize($tenant);
+}
