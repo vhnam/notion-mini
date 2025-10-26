@@ -1,10 +1,10 @@
 <x-layouts.auth>
-    <x-auth-header
+    <x-modules.auth.header
         :title="__('Forgot your password?')"
         :description="__('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.')"
     />
 
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-modules.auth.session-status class="text-center" :status="session('status')" />
 
     <flux:card>
         <div class="flex flex-col gap-6">

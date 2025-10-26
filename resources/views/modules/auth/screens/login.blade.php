@@ -1,10 +1,10 @@
 <x-layouts.auth>
-    <x-auth-header
+    <x-modules.auth.header
         :title="__('Log in to your account')"
         :description="__('Enter your email and password below to log in')"
     />
 
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-modules.auth.session-status class="text-center" :status="session('status')" />
 
     <flux:card>
         <div class="flex flex-col gap-6">

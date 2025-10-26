@@ -23,7 +23,7 @@
                         <div class="flex items-center">
                             <a href="{{ route('home') }}" class="flex items-center gap-2 font-medium">
                                 <span class="flex h-8 w-8 items-center justify-center rounded-md">
-                                    <x-app-logo-icon class="size-8 fill-current text-black dark:text-white" />
+                                    <x-shared.app-logo-icon class="size-8 fill-current text-black dark:text-white" />
                                 </span>
                                 <span class="text-lg font-semibold">{{ config('app.name', 'Notion Mini') }}</span>
                             </a>
@@ -33,7 +33,7 @@
                             <span class="text-sm text-zinc-600 dark:text-zinc-400">
                                 Welcome, {{ Auth::user()->name }}!
                             </span>
-                            <x-logout-form />
+                            <x-shared.logout-form />
                         </div>
                     </div>
                 </div>
@@ -74,50 +74,6 @@
                                         {{ Auth::user()->created_at->format('M j, Y') }}
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                    </flux:card>
-
-                    <!-- Quick Actions Card -->
-                    <flux:card>
-                        <div class="p-6">
-                            <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-4">Quick Actions</h3>
-                            <div class="space-y-3">
-                                <a href="{{ route('home') }}" class="block w-full">
-                                    <flux:button variant="ghost" class="w-full justify-start">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                            ></path>
-                                        </svg>
-                                        Go to Home
-                                    </flux:button>
-                                </a>
-                                @php
-                                    $user = Auth::user();
-                                    $tenantId = $user->getTenantId();
-                                @endphp
-
-                                <a
-                                    href="{{ route('tenant.dashboard', ['tenant' => $tenantId]) }}"
-                                    class="block w-full"
-                                >
-                                    <flux:button variant="primary" class="w-full justify-start">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                                            ></path>
-                                        </svg>
-                                        Access My Tenant
-                                    </flux:button>
-                                </a>
-                                <x-logout-link />
                             </div>
                         </div>
                     </flux:card>
