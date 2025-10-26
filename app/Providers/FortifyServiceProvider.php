@@ -51,19 +51,19 @@ class FortifyServiceProvider extends ServiceProvider
     private function configureViews(): void
     {
         Fortify::loginView(function () {
-            return view('modules.auth.screens.login');
+            return view('modules.auth.login');
         });
 
         Fortify::registerView(function () {
-            return view('modules.auth.screens.register');
+            return view('modules.auth.register');
         });
 
         Fortify::requestPasswordResetLinkView(function () {
-            return view('modules.auth.screens.forgot-password');
+            return view('modules.auth.forgot-password');
         });
 
         Fortify::resetPasswordView(function ($request) {
-            return view('modules.auth.screens.reset-password', ['request' => $request]);
+            return view('modules.auth.reset-password', ['request' => $request]);
         });
     }
 

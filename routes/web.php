@@ -8,7 +8,15 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = auth()->user();
+
+    // Super Admin sees system dashboard
+    if ($user->hasRole('Super Admin')) {
+        return view('modules.dashboard.system.dashboard');
+    }
+
+    // Regular users see home dashboard
+    return view('modules.dashboard.home.dashboard');
 })
     ->middleware('auth')
     ->name('dashboard');
