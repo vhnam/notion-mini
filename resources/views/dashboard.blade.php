@@ -98,9 +98,13 @@
                                 </a>
                                 @php
                                     $user = Auth::user();
-                                    $tenantId = 'tenant-' . str_replace(['@', '.'], ['-', '-'], $user->email);
+                                    $tenantId = $user->getTenantId();
                                 @endphp
-                                <a href="{{ route('tenant.dashboard', ['tenant' => $tenantId]) }}" class="block w-full">
+
+                                <a
+                                    href="{{ route('tenant.dashboard', ['tenant' => $tenantId]) }}"
+                                    class="block w-full"
+                                >
                                     <flux:button variant="primary" class="w-full justify-start">
                                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path

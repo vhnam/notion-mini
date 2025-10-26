@@ -45,8 +45,8 @@ class CreateNewUser implements CreatesNewUsers
     protected function createTenantForUser(User $user): void
     {
         // Generate a unique tenant ID based on user email
-        $tenantId = 'tenant-' . str_replace(['@', '.'], ['-', '-'], $user->email);
-        
+        $tenantId = $user->getTenantId();
+
         // Create the tenant using the proper tenancy method
         $tenant = Tenant::create([
             'id' => $tenantId,
