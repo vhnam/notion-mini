@@ -9,6 +9,7 @@ A multi-tenant Laravel application with Livewire, Fortify authentication, and mo
 - **Livewire 3** - Full-stack framework for Laravel
 - **Livewire Flux** - Beautiful UI components
 - **Laravel Fortify** - Authentication scaffolding with 2FA support
+- **Spatie Laravel Permission** - Role and permission management with Super Admin support
 - **PostgreSQL** - Database with Docker
 - **Laravel Sail** - Docker development environment
 - **pnpm** - Fast, disk space efficient package manager
@@ -63,11 +64,20 @@ This project uses Laravel Sail for Docker-based development. Make sure you have 
     ./vendor/bin/sail pnpm install
     ```
 
-7. **Run database migrations**
+7. **Run database migrations and seed**
 
     ```bash
-    ./vendor/bin/sail artisan migrate
+    # Run central database migrations with seeding
+    ./vendor/bin/sail artisan migrate:fresh --seed
+
+    # Run tenant migrations
+    ./vendor/bin/sail artisan tenants:migrate-fresh
     ```
+
+    This will create:
+    - A Super Admin user (Email: `sa@example.com`, Password: `password`)
+    - All necessary database tables including roles and permissions
+    - Required tenant schemas
 
 8. **Build frontend assets**
     ```bash
@@ -79,7 +89,8 @@ This project uses Laravel Sail for Docker-based development. Make sure you have 
 - **Start development server**: `./vendor/bin/sail up -d`
 - **Stop development server**: `./vendor/bin/sail down`
 - **Run tests**: `./vendor/bin/sail test`
-- **Run migrations**: `./vendor/bin/sail artisan migrate`
+- **Fresh migrations**: `./vendor/bin/sail artisan migrate:fresh --seed`
+- **Tenant migrations**: `./vendor/bin/sail artisan tenants:migrate-fresh`
 - **Install packages**: `./vendor/bin/sail pnpm install`
 - **Build assets**: `./vendor/bin/sail pnpm run build`
 - **Watch assets**: `./vendor/bin/sail pnpm run dev`
