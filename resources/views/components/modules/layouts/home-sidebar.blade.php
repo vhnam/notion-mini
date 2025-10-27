@@ -23,6 +23,7 @@
     </flux:sidebar.nav>
     <flux:sidebar.spacer />
     <flux:sidebar.nav>
+        <flux:sidebar.item icon="building-office" href="{{ route('my-tenant.show') }}" :current="request()->routeIs('my-tenant.*')">My Tenant</flux:sidebar.item>
         <flux:sidebar.item icon="cog-6-tooth" href="#">Settings</flux:sidebar.item>
         <flux:sidebar.item icon="information-circle" href="#">Help</flux:sidebar.item>
     </flux:sidebar.nav>

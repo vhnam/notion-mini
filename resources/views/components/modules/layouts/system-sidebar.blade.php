@@ -11,8 +11,8 @@
         />
     </flux:sidebar.header>
     <flux:sidebar.nav>
-        <flux:sidebar.item icon="home" href="#" current>Home</flux:sidebar.item>
-        <flux:sidebar.item icon="building-office" href="#">Tenants</flux:sidebar.item>
+        <flux:sidebar.item icon="home" href="{{ route('dashboard') }}" :current="request()->routeIs('dashboard')">Home</flux:sidebar.item>
+        <flux:sidebar.item icon="building-office" href="{{ route('system.tenants.index') }}" :current="request()->routeIs('system.tenants.*')">Tenants</flux:sidebar.item>
         <flux:sidebar.item icon="user-group" href="#">Users</flux:sidebar.item>
         <flux:sidebar.group expandable heading="ABAC" class="grid" icon="shield-check">
             <flux:sidebar.item href="#">Policies</flux:sidebar.item>
